@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- 本配置文件对应类别体系管理 -->
+<struts>
+	<package name="typenagement" namespace="/typenagement" extends="json-default">
+		<!-- 类别管理 -->
+		<!-- 加载站点，即在新增线路时，加载货仓所在城市列表 -->
+		<action name="typeloadAction" class="com.zj.type.action.LoadAllTypeAction">
+			<result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
+		
+		<action name="techtypeloadAction" class="com.zj.techtype.action.TechTypeLoadAction">
+			<result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
+		
+
+		<action name="uploadPictureAction" class="com.zj.gongyi.action.GoneYiAction" method="uploadFirst">
+            <param name="savePath">/upload/uploadimge</param>
+            <param name="videoPath">/upload/uploadflash</param>     
+			<result name="success">/modifyInfo.jsp</result> 
+			<result name="input">/modifyInfo.jsp</result>    
+		</action>
+		
+		<action name="deleteAction" class="com.zj.gongyi.action.GoneYiAction" method="delete">
+  			<result name="success">/deleteSuccess.jsp</result>
+  			<result name="input">/modifyInfo.jsp</result>  
+		</action>
+		
+		<action name="addAreaProblemAction" class="com.zj.gongyi.action.AreaProblemAction" method="ExecuteAdd">
+			<result name="success">/quyu.jsp</result> 
+			<result name="input">/quyu.jsp</result>    
+		</action>
+		
+	    <!--加载菜单-->
+		<action name="loadMenuAction" class="com.client.action.LoadMenuAction">
+			<result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
+		
+		<action name="loadDefaultTechAction" class="com.client.action.LoadTechAction">
+			<result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
+		<action name="FindTechAction" class="com.client.action.LoadTechAction" method="LoadByNumber">
+			<result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
+		
+		<action name="loadAreaProblems" class="com.client.action.LoadProblemAction">
+			<result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
+		
+		<action name="loadProblemsByCity" class="com.client.action.LoadProblemByCity">
+			<result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
+	</package>
+</struts>

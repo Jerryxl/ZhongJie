@@ -1,0 +1,18 @@
+
+.doubleselectcentent {
+   float:left;
+   text-align: center;
+   margin: 10px;
+}
+.doubleselect { 
+	display:block; 
+	margin:2px 2px;
+	padding:4px 10px; 
+	background:#898989;
+	cursor:pointer;
+	font-size:12px;
+	color:white;
+    text-decoration: none;
+	/*<!--text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);-->*/
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}

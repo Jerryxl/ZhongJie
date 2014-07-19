@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<!-- 本配置文件对应类别体系管理 -->
+<struts>
+	<package name="uploadMethod"  extends="json-default">
+		<!-- 类别管理 -->
+		<!-- 加载站点，即在新增线路时，加载货仓所在城市列表 -->
+		<action name="uploadPictureAction" class="com.zj.gongyi.action.GoneYiAction" method="uploadFirst">
+            <param name="savePath">/upload/uploadimage</param>
+             <param name="videoPath">/upload/uploadflash</param>     
+			 <result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,88 @@
+package com.zj.type.action;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
+import com.opensymphony.xwork2.ActionSupport;
+import com.zj.service.TypeService;
+import com.zj.vo.TypeVO;
+
+public class LoadAllTypeAction extends ActionSupport {
+	private static final long serialVersionUID = 4928445350202869420L;
+	private JSONObject jsonobject;
+
+	public JSONObject getJsonobject() {
+		return jsonobject;
+	}
+
+	public void setJsonobject(JSONObject jsonobject) {
+		this.jsonobject = jsonobject;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		JSONArray array = new JSONArray();
+		jsonobject = new JSONObject();
+		TypeService service = new TypeService();
+		List<TypeVO> list = new ArrayList<TypeVO>();// service.getwareHouseList();
+		list = service.getTypes();
+
+		JSONObject empty = new JSONObject();
+		empty.put("value", "00");
+		empty.put("name", "无");
+		array.add(empty);
+		// 为空的情况
+		if (list.size() < 1) {
+			jsonobject.put("data", array);
+			return SUCCESS;
+		}
+		HashMap<String, String> map = construct(list);
+		if (map.size() < 1) {
+			return SUCCESS;
+		}
+
+		for (String s : map.keySet()) {
+			JSONObject obj = new JSONObject();
+			obj.put("value", s);
+			obj.put("name", map.get(s));
+			array.add(obj);
+		}
+
+		jsonobject.put("data", array);
+		System.out.println(jsonobject.toString());
+		return SUCCESS;
+	}
+
+	/**
+	 * 构造列别列表 <number name>
+	 * */
+	public HashMap<String, String> construct(List<TypeVO> ls) {
+		HashMap<String, String> result = new HashMap<String, String>();
+		HashMap<String, String> num_name = new HashMap<String, String>();
+		for (TypeVO vv : ls) {
+			num_name.put(vv.getNumber(), vv.getName());
+		}
+
+		for (TypeVO vo : ls) {
+			if (vo.getNumber().length() <= 4) {
+				result.put(vo.getNumber(), vo.getName());
+			} else {
+				int i = 0;
+				String name = "";
+				String number = "";
+				for (; i < (vo.getNumber().length() - 4);) {
+					number = vo.getNumber().substring(i, i + 4);
+					i += 4;
+					name = name + num_name.get(number) + "-->";
+				}
+				result.put(vo.getNumber(), name + vo.getName());
+			}
+		}
+		return result;
+	}
+
+}

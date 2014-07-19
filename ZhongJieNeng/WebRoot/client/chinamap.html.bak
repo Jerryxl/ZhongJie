@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<!--[if lte IE 8]>              <html class="ie8 no-js" lang="en">     <![endif]-->
+<!--[if IE 9]>					<html class="ie9 no-js" lang="en">     <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="not-ie no-js" lang="en">  <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+	<title>城市水资源开发利用(北方)国家工程研究中心</title>
+	
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	
+	<link rel="shortcut" href="images/favicon.ico" />
+	<link rel="stylesheet" href="css/style.css" media="screen" />
+	<link rel="stylesheet" href="css/skeleton.css" media="screen" />
+	<!-- HTML5 Shiv + detect touch events -->
+	<script type="text/javascript" src="js/modernizr.custom.js"></script>
+    
+    <!--图片展示效果-->
+    <!-- Add jQuery library -->
+	<script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+	<!-- Add mousewheel plugin (this is optional) -->
+	<script type="text/javascript" src="js/fancybox/jquery.mousewheel-3.0.6.pack.js"></script>
+	<!-- Add fancyBox main JS and CSS files -->
+	<script type="text/javascript" src="js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+	<link rel="stylesheet" type="text/css" href="js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+	<!-- Add Button helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="js/fancybox/helpers/jquery.fancybox-buttons.css?v=1.0.5" />
+	<script type="text/javascript" src="js/fancybox/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+	<!-- Add Thumbnail helper (this is optional) -->
+	<link rel="stylesheet" type="text/css" href="js/fancybox//helpers/jquery.fancybox-thumbs.css?v=1.0.7" />
+	<script type="text/javascript" src="js/fancybox/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+	<!-- Add Media helper (this is optional) -->
+	<script type="text/javascript" src="js/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+
+   <!--地图功能-->
+   <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=3RrEKmLmny9Kxas8F3c1jNTH"></script>  
+   <!--地图完毕-->
+   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /></head>
+   <body class="menu-1 h-style-1 text-1">
+
+<div class="wrap">
+	
+	<!-- - - - - - - - - - - - - - Header - - - - - - - - - - - - - - - - -->	
+	
+	<header id="header" class="clearfix">
+		
+		<a href="#" id="logo"><img src="images/logo_water.jpg" alt="城市水资源开发利用(北方)国家工程研究中心" /></a>
+		
+		<div class="widget-container widget_search">
+			
+			<span class="call"><span>0451</span>—86283082</span><br />
+			
+			<span class="adds">哈尔滨市南岗区海河路73号</span>
+
+			<form action="#" id="searchform" method="get" />
+
+				<p>
+					<input type="text" id="s" placeholder="搜索" />
+					<button type="submit" id="searchsubmit"></button>
+				</p>
+
+			</form><!--/ #searchform-->
+
+		</div><!--/ .widget-container-->	
+		<nav id="navigation" class="navigation">
+			<ul>
+				<li><a href="General.html">谱系工艺展示</a></li>
+				<li><a href="chinamap.html">区域问题展示</a></li>
+				<li><a href="singleCity.html">试点城市工艺展示</a></li>
+			</ul>
+		</nav><!--/ #navigation-->
+		
+	</header><!--/ #header-->
+	
+	<!-- - - - - - - - - - - - - - end Header - - - - - - - - - - - - - - - - -->	
+	
+	
+	<div class="main">
+          <div id="map"></div>
+	</div><!--/ .main-->
+
+ <!--这里是隐藏层-->
+        <div style="display:none">
+					<div class="widget-container widget_recent_entries" id="showmessage">
+					<h3 class="widget-title">东北地区环境保护整体解决方案</h3>
+					<ul>
+						<li><a href="#">环境污染现状</a></li>
+						<li><a href="#">环境治理技术优缺点</a></li>
+						<li><a href="#">环境整体解决的最优技术组合</a></li>
+						<li><a href="#">商业模式</a></li>
+						<li><a href="#">执行导则</a></li>
+					</ul>
+					
+					<a href="#" class="see">查看更多</a>
+					
+				</div><!--/ .widget-container-->	
+      </div>
+        <!--隐藏层结束-->
+
+		<!-- - - - - - - - - - - - - - - Footer - - - - - - - - - - - - - - - - -->	
+	
+	<footer id="footer" class="container clearfix">
+		
+		<section class="container clearfix">
+			<div class="adjective clearfix">
+				<p class="copyright">Copyright &copy; 2014. 城市水资源开发利用(北方)国家工程研究中心</p>
+
+			</div><!--/ .adjective-->
+		
+		</section><!--/ .container-->
+		
+	</footer><!--/ #footer-->
+	
+	<!-- - - - - - - - - - - - - - - end Footer - - - - - - - - - - - - - - - - -->		
+	
+</div><!--/ .wrap-->
+</body>
+</html>
+ <script type="text/javascript" src="js/chinamap.js"></script>
