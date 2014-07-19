@@ -46,11 +46,11 @@
 	//中南25.477778,108.120833
     //标注点数组
     var markerArr = [
-	      {title:"东北地区",content:"东北三省污染状况信息",url:"#showmessage",point:"122.65|43.761111",isOpen:0,icon:{pic:"images/labels/m1.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"华东地区",content:"华东五省污染状况信息",url:"#showmessage",point:"117.291667|31.866667",isOpen:0,icon:{pic:"images/labels/m3.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"华北地区",content:"华北四省污染状况信息",url:"#showmessage",point:"105.523076|36.822222",isOpen:0,icon:{pic:"images/labels/m2.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"西南地区",content:"西南四省污染状况信息",url:"#showmessage",point:"98.145833|29.647222",isOpen:0,icon:{pic:"images/labels/m3.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"西北地区",content:"西北五省污染状况信息",url:"#showmessage",point:"91.775|39.338036",isOpen:0,icon:{pic:"images/labels/m1.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+	      {title:"东北地区",content:"东北三省污染状况信息",url:"#00",point:"122.65|43.761111",isOpen:0,icon:{pic:"images/labels/m1.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"华东地区",content:"华东五省污染状况信息",url:"#01",point:"117.291667|31.866667",isOpen:0,icon:{pic:"images/labels/m3.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"华北地区",content:"华北四省污染状况信息",url:"#04",point:"105.523076|36.822222",isOpen:0,icon:{pic:"images/labels/m2.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"西南地区",content:"西南四省污染状况信息",url:"#06",point:"98.145833|29.647222",isOpen:0,icon:{pic:"images/labels/m3.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"西北地区",content:"西北五省污染状况信息",url:"#05",point:"91.775|39.338036",isOpen:0,icon:{pic:"images/labels/m1.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
 		 ,{title:"中南地区",content:"中南三省污染状况信息",url:"#showmessage",point:"109.649033|25.834834",isOpen:0,icon:{pic:"images/labels/m2.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
 		 ];
     //创建marker
