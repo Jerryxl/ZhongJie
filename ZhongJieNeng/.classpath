@@ -8,7 +8,6 @@
 	<classpathentry kind="lib" path="E:/jar/commons-beanutils-1.7.0.jar"/>
 	<classpathentry kind="lib" path="E:/jar/commons-collections-3.2.jar"/>
 	<classpathentry kind="lib" path="E:/jar/commons-fileupload-1.2.1.jar"/>
-	<classpathentry kind="lib" path="E:/jar/commons-io-1.3.2.jar"/>
 	<classpathentry kind="lib" path="E:/jar/commons-lang-2.3.jar"/>
 	<classpathentry kind="lib" path="E:/jar/commons-logging-1.0.4.jar"/>
 	<classpathentry kind="lib" path="E:/jar/ezmorph-1.0.3.jar"/>
@@ -19,5 +18,6 @@
 	<classpathentry kind="lib" path="E:/jar/struts2-core-2.1.8.1.jar"/>
 	<classpathentry kind="lib" path="E:/jar/struts2-json-plugin-2.1.8.1.jar"/>
 	<classpathentry kind="lib" path="E:/jar/xwork-core-2.1.6.jar"/>
+	<classpathentry kind="lib" path="C:/Users/xueliang/Desktop/bae7aae6-119c-3696-975b-a75d5f37abbf/WebContent/WEB-INF/lib/commons-io-1.4.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

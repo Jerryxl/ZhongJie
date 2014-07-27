@@ -1,4 +1,6 @@
-<%@ page language="java" import="java.util.*,java.io.File" pageEncoding="utf-8"%>
+<%@page import="java.io.File"%>
+<%@ page language="java" contentType="text/html; charset=GB18030"
+    pageEncoding="GB18030"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -6,9 +8,9 @@
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
-<title>å›¾ç‰‡æµè§ˆ</title>
+<title>Í¼Æ¬ä¯ÀÀ</title>
 <script type="text/javascript">
-//è¿™æ®µå‡½æ•°æ˜¯é‡ç‚¹ï¼Œä¸ç„¶ä¸èƒ½å’ŒCKEditoräº’åŠ¨äº†
+//Õâ¶Îº¯ÊıÊÇÖØµã£¬²»È»²»ÄÜºÍCKEditor»¥¶¯ÁË
 function funCallback(funcNum,fileUrl){
 	var parentWindow = ( window.parent == window ) ? window.opener : window.parent;
 	parentWindow.CKEDITOR.tools.callFunction(funcNum, fileUrl);
@@ -20,7 +22,7 @@ function funCallback(funcNum,fileUrl){
 <%
 	String path = request.getContextPath() + "/";
 	String type = "";
-	if(request.getParameter("type") != null)//è·å–æ–‡ä»¶åˆ†ç±»
+	if(request.getParameter("type") != null)//»ñÈ¡ÎÄ¼ş·ÖÀà
 		type = request.getParameter("type").toLowerCase() + "/";
 	String clientPath = "ckeditor/uploader/upload/" + type;
 	File root = new File(request.getSession().getServletContext().getRealPath(clientPath));
@@ -35,7 +37,7 @@ function funCallback(funcNum,fileUrl){
 			out.println("<img width='110px' height='70px' src='" + src + "' alt='" + file.getName() + "' onclick=\"funCallback("+callback+",'"+ src +"')\">");
 		}
 	}else{
-		out.println("<h3>æœªæ£€æµ‹åˆ°èµ„æºã€‚</h3>");
+		out.println("<h3>Î´¼ì²âµ½×ÊÔ´¡£</h3>");
 	}
  %>
 </body>

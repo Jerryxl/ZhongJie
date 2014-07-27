@@ -15,6 +15,13 @@
 				<param name="root">jsonobject</param>
 			</result>
 		</action>
+			<action name="modifyPictureAction" class="com.zj.gongyi.action.GoneYiAction" method="updateTech">
+            <param name="savePath">/upload/uploadimage</param>
+            <param name="videoPath">/upload/uploadflash</param>     
+			 <result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
 		
 	</package>
 </struts>

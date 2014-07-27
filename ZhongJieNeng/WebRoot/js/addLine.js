@@ -62,6 +62,5 @@ function addSubDiv(){
 	alert($("#firstimagediv").html());
 }
 function submitUp(){
-	alert("I o ");
 	$("#upmediaform").submit();
 }

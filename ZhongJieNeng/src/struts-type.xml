@@ -13,6 +13,11 @@
 				<param name="root">jsonobject</param>
 			</result>
 		</action>
+				<action name="deleteTechAction" class="com.zj.gongyi.action.DeleteTechAction">
+			<result name="success" type="json">
+				<param name="root">jsonobject</param>
+			</result>
+		</action>
 		
 		<action name="techtypeloadAction" class="com.zj.techtype.action.TechTypeLoadAction">
 			<result name="success" type="json">
@@ -24,7 +29,13 @@
 		<action name="uploadPictureAction" class="com.zj.gongyi.action.GoneYiAction" method="uploadFirst">
             <param name="savePath">/upload/uploadimge</param>
             <param name="videoPath">/upload/uploadflash</param>     
-			<result name="success">/modifyInfo.jsp</result> 
+			<result name="success">/list.jsp</result> 
+			<result name="input">/modifyInfo.jsp</result>    
+		</action>
+		<action name="modifyPictureAction" class="com.zj.gongyi.action.GoneYiAction" method="updateTech">
+            <param name="savePath">/upload/uploadimge</param>
+            <param name="videoPath">/upload/uploadflash</param>     
+			<result name="success">/list.jsp</result> 
 			<result name="input">/modifyInfo.jsp</result>    
 		</action>
 		

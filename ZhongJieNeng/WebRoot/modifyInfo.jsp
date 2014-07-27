@@ -113,10 +113,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        &nbsp;
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>内容管理<i class="icon-chevron-up"></i></a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
-            <li><a href="modifyInfo.jsp">工艺信息录入</a></li>
+             <li><a href="modifyInfo.jsp">工艺信息录入</a></li>
+            <li><a hre="list.jsp">工艺列表(修改、删除)</a></li>
             <li ><a href="quyu.jsp">区域信息录入</a></li>
             <li ><a href="typeManage.html">类别系管理</a></li>
-            
         </u>
     </div>
     
