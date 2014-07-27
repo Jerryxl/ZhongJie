@@ -64,6 +64,7 @@ public class CommonTools {
 							
 							item.getChild().add(im);
 							for(ShortGeneralVO gg:gvos){
+								if(!gg.getTechtype().contains("_"))continue;
 								if(gg.getTechtype().split("_")[1].equals(vv.getNumber())){
 									MenuItem gin=new MenuItem();
 									gin.setCode(gg.getNumber());

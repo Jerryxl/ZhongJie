@@ -17,21 +17,21 @@ CKEDITOR.editorConfig = function( config )
 	config.filebrowserFlashUploadUrl = 'ckeditor/uploader/upload.jsp?type=Flashs';
 	config.filebrowserWindowWidth = '640';
 	config.filebrowserWindowHeight = '480';
-//	config.toolbar_A =
-//		[
-//			['Source'],
-//			['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print', 'SpellChecker', 'Scayt'],
-//			['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
-//			'/',
-//			['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
-//			['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
-//			['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
-//			['Link','Unlink','Anchor'],
-//			['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
-//			'/',
-//			['Styles','Format','Font','FontSize'],
-//			['TextColor','BGColor'],
-//			['Maximize', 'ShowBlocks']
-//		];
-//	config.toolbar = 'A';
+	config.toolbar_A =
+		[
+			['Source'],
+			['Cut','Copy','Paste','PasteText','PasteFromWord','-','Print', 'SpellChecker', 'Scayt'],
+			['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+			'/',
+			['Bold','Italic','Underline','Strike','-','Subscript','Superscript'],
+			['NumberedList','BulletedList','-','Outdent','Indent','Blockquote'],
+			['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],
+			['Link','Unlink','Anchor'],
+			['Image','Flash','Table','HorizontalRule','Smiley','SpecialChar','PageBreak'],
+			'/',
+			['Styles','Format','Font','FontSize'],
+			['TextColor','BGColor'],
+			['Maximize', 'ShowBlocks']
+		];
+	config.toolbar = 'A';
 };

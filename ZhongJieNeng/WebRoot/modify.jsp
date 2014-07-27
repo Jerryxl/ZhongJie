@@ -1,13 +1,21 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*,com.zj.service.*,com.zj.vo.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+String tid=request.getParameter("tid");
+GeneralTechService service=new GeneralTechService();
+GeneralVO vo=service.getById(tid);
+TechTypeService typeservice=new TechTypeService();
+TypeService type=new TypeService();
+List<TechTypeVO> techlist=typeservice.getAllType();
+List<TypeVO> list=type.getTypes();
+
 %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <base href="<%=basePath%>">
-    <title>区域问题</title>
+    <title>增加技术工艺</title>
      <!--<meta charset="utf-8">  -->
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,6 +36,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- datatable控件所需 -->
 	<script src="lib/bootstrap/js/bootstrap-datepicker.js" type="text/javascript"></script>
      
+     
+     <script src="js/modify.js" type="text/javascript"></script>
      <!--富文本编辑器-->
     <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
 
@@ -55,11 +65,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	  $(function(){
 	       CKEDITOR.replace("shortmessage");
+		   CKEDITOR.replace("usescope");
+		   CKEDITOR.replace("advancedesc");
+		   CKEDITOR.replace("appdesc");
 		   CKEDITOR.replace("detailmessage");
 		   loadType();
 		   loadTechType();
 		  })	 
 				</script>
+				
+				
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -99,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     
                 </ul>
-               <a class="brand" href="#"><img src="images/logo_water.jpg" width="100" height="50" alt="Water Res">&nbsp;<span class="first">WaterRes</span> </a>
+                <a class="brand" href="#"><img src="images/logo_water.jpg" width="100" height="50" alt="Water Res">&nbsp;<span class="first">WaterRes</span> </a>
         </div>
     </div>
     
@@ -108,106 +123,91 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        &nbsp;
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>内容管理<i class="icon-chevron-up"></i></a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
-             <li><a href="modifyInfo.jsp">工艺信息录入</a></li>
+            <li><a href="modifyInfo.jsp">工艺信息录入</a></li>
             <li><a hre="list.jsp">工艺列表(修改、删除)</a></li>
             <li ><a href="quyu.jsp">区域信息录入</a></li>
             <li ><a href="typeManage.html">类别系管理</a></li>
+            
         </u>
     </div>
-    
-
-    
     <div class="content">
         
         <div class="header">
-            
-            <h1 class="page-title">区域问题管理</h1>
+                  
+            <h1 class="page-title">新增技术工艺</h1>
         </div>
         
                 <ul class="breadcrumb">
-                  <li>区域环境信息管理</li>
+                  <li>修改工艺</li>
         </ul>
 
         <div class="container-fluid">
             <div class="row-fluid">
+             
     <!--下面开始工艺原理的上传操作-->
-		      <form  action="<%=basePath%>typenagement/addAreaProblemAction"  method="post" id="upmediaform">
+		      <form  action="<%=basePath%>typenagement/modifyPictureAction"  method="post">
+		      <input type="hidden" id="tid" name="tid" value="<%=vo.getId()%>"/>
        			<p>
-				     <label>信息类别</label>
-					 <select id="infotype" name="infotype">
-					 
-					    <option value="1">环境污染现状描述</option>
-						<option value="2">省份主要问题描述</option>
-						<option value="3">治理技术介绍</option>
+				     <label>污染物类别体系</label>
+					 <select id="zhtype" name="zhtype">
+					 <% 
+					 for(TypeVO tvo:list){
+					 if(tvo.getNumber().equals(vo.getZhtype())){
+					 %>
+					  <option value="<%=tvo.getNumber()%>" selected="selected"><%=tvo.getName() %></option>
+					 <%
+					 }else{ 
+					 %>
+					 <option value="<%=tvo.getNumber()%>"><%=tvo.getName() %></option>
+					 <%
+					 }}
+					 %>
 					 </select>
 				</p>
 				<p>
-				     <label>环境问题省份</label>
-					 <select id="province" name="areaid">
-					      <option value="00">东北区</option>
-						 <option value="hei">黑龙江省</option>
-						 <option value="ji">吉林省</option>
-						 <option value="liao">辽宁省</option>
-						 <option value="ha">哈尔滨</option>
-						 <option value="01">华东区</option>
-						 <option value="jiangsu">江苏省</option>
-						 <option value="zhejiang">浙江省</option>
-						 <option value="anhui">安徽省</option>
-						 <option value="fujian">福建省</option>
-						 <option value="shandong">山东省</option>
-						 <option value="shanhai">上海市</option>
-						 <option value="02">华南区</option>
-						 <option value="guangdong">广东省</option>
-						 <option value="guangxi">广西省</option>
-						 <option value="hainan">海南省</option>
-						 <option value="03">华中区</option>
-						 <option value="hubei">湖北省</option>
-						 <option value="hunan">湖南省</option>
-						 <option value="henan">河南省</option>
-						 <option value="jiangxi">江西省</option>
-						 <option value="04">华北区</option>
-						 <option value="beijing">北京市</option>
-						 <option value="tianjin">天津市</option>
-						 <option value="hebei">河北省</option>
-						 <option value="shanxi">山西省</option>
-						 <option value="neimenggu">内蒙古省</option>
-						 <option value="05">西北区</option>
-						 <option value="ningxia">宁夏省</option>
-						 <option value="xinjiang">新疆省</option>
-						 <option value="qinghai">青海省</option>
-						 <option value="shanxi2">陕西省</option>
-						 <option value="gansu">甘肃省</option>
-						 <option value="06">西南区</option>
-						 <option value="sichuan">四川省</option>
-						 <option value="yunnan">云南省</option>
-						 <option value="guizhou">贵州省</option>
-						 <option value="xizang">西藏省</option>
-						 <option value="chongqing">重庆市</option>
-						 
-					</select>
-				</p>
-				<p>
-				     <label>对应环境类型</label>
-					 <select id="envtype" name="envtype">
-						 <option value="water">水环境</option>
-						 <option value="air">大气环境</option>
-						 <option value="soil">固体废弃物与土壤</option>
-						 <option value="noise"> 噪声</option>
+				     <label>工艺技术分类</label>
+					 <select id="techtype" name="techtype">
+					 <%
+					 for(TechTypeVO tvo:techlist){
+					 if(vo.getTechtype().equals(tvo.getNumber())){
+					 %>
+					 <option value="<%=tvo.getNumber()%>" selected="selected"><%=tvo.getName()%></option>
+					 <%
+					 }
+					 else{%>
+					  <option value="<%=tvo.getNumber()%>"><%=tvo.getName()%></option>
+					 <%
+					 
+					 }}
+					  %>
 					 </select>
 				</p>
                 <p>
-                    <label>标题</label>
-                     <input type="text" class="span12" id="title" name="title">
-               </p>
-			    <p>
-                     <label>简介</label>
-                     <textarea class="span12" rows="5" id="shortmessage" name="shortmessage"></textarea>
+                    <label>工艺名称</label>
+                     <input type="text" class="span12" id="techname" name="techname" value=<%=vo.getTechname() %>>
                </p>
 			   <p>
-                     <label>详述</label>
-                     <textarea class="span12" rows="5" id="detailmessage" name="detailmessage"></textarea>
+                     <label>工艺简介</label>
+                     <textarea class="span12" rows="5" id="shortmessage" name="shortmessage"><%=vo.getShortmessage() %></textarea>
                </p>
-                    <input type="submit" value="保存" class="btn btn-primary">
+
+               <p>
+                     <label>适用范围介绍</label>
+                     <textarea class="span12" rows="5" id="usescope" name="usescope"><%=vo.getUsescope() %></textarea> 
+              </p>
+               <p>
+                     <label>先进性介绍</label>
+                     <textarea class="span12" rows="5" id="advancedesc" name="advancedesc"><%=vo.getAdvancedesc() %></textarea>
+               </p>
+			    <p>
+                     <label>应用情况介绍</label>
+                     <textarea class="span12" rows="5" id="appdesc" name="appdesc"><%=vo.getAppdesc() %></textarea>
+               </p>
+			   <p>
+                     <label>工艺详述</label>
+                     <textarea class="span12" rows="5" id="detailmessage" name="detailmessage"><%=vo.getDetailmessage() %></textarea>
+               </p>
+                    <input type="submit" value="保存" class="btn btn-primary"><input type="button" value="取消" class="btn btn-primary" onclick="history.go(-1)">
 				    
 			   </form>
             </div>

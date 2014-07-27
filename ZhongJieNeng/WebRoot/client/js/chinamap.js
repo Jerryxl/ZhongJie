@@ -1,5 +1,6 @@
   var datastore;   
   var firstmenu;
+ 
 //创建和初始化地图函数：
     function initMap(){
         createMap();//创建地图
@@ -46,12 +47,12 @@
 	//中南25.477778,108.120833
     //标注点数组
     var markerArr = [
-	      {title:"东北地区",content:"东北三省污染状况信息",url:"#00",point:"122.65|43.761111",isOpen:0,icon:{pic:"images/labels/m1.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"华东地区",content:"华东五省污染状况信息",url:"#01",point:"117.291667|31.866667",isOpen:0,icon:{pic:"images/labels/m3.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"华北地区",content:"华北四省污染状况信息",url:"#04",point:"105.523076|36.822222",isOpen:0,icon:{pic:"images/labels/m2.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"西南地区",content:"西南四省污染状况信息",url:"#06",point:"98.145833|29.647222",isOpen:0,icon:{pic:"images/labels/m3.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"西北地区",content:"西北五省污染状况信息",url:"#05",point:"91.775|39.338036",isOpen:0,icon:{pic:"images/labels/m1.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
-		 ,{title:"中南地区",content:"中南三省污染状况信息",url:"#showmessage",point:"109.649033|25.834834",isOpen:0,icon:{pic:"images/labels/m2.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+	      {title:"东北地区",content:"东北三省污染状况信息",url:"00_东北地区",point:"122.65|43.761111",isOpen:0,icon:{pic:"images/labels/m1.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"华东地区",content:"华东五省污染状况信息",url:"01_华东地区",point:"117.291667|31.866667",isOpen:0,icon:{pic:"images/labels/m3.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"华北地区",content:"华北四省污染状况信息",url:"04_华北地区",point:"105.523076|36.822222",isOpen:0,icon:{pic:"images/labels/m2.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"西南地区",content:"西南四省污染状况信息",url:"06_西南地区",point:"98.145833|29.647222",isOpen:0,icon:{pic:"images/labels/m3.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"西北地区",content:"西北五省污染状况信息",url:"05_西北地区",point:"91.775|39.338036",isOpen:0,icon:{pic:"images/labels/m1.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
+		 ,{title:"中南地区",content:"中南三省污染状况信息",url:"07_中南地区",point:"109.649033|25.834834",isOpen:0,icon:{pic:"images/labels/m2.png",w:21,h:21,l:0,t:0,x:6,lb:5}}
 		 ];
     //创建marker
     function addMarker(){
@@ -139,7 +140,14 @@
     });
 	}
 	
+	/**
+	 * 显示区域顶级菜单
+	 * @param locationAddress areanum_areaname 区域的编号和名称
+	 * */
 	function showDetailtop(locationAddress){
+		var areaname=locationAddress.split("_")[1];
+		var areanum=locationAddress.split("_")[0];
+		initShow(areaname,areanum);//构造该区域的菜单
 		var message =firstmenu;//这里暂时
 		var org=message;
 		$("#showmessage").html(message);
@@ -155,9 +163,13 @@
 		$("#showmessage").html(message);
 	}
 	
-	
-	function initShow(){
-		var txt="<h3 class=\"widget-title\">东北地区环境保护整体解决方案</h3><ul>";
+	/**
+	 * 初始化显示内容
+	 * @param areaname 区域名称
+	 * @param areanum 区域编号
+	 * */
+	function initShow(areaname,areanum){
+		var txt="<h3 class=\"widget-title\">"+areaname+"环境保护整体解决方案</h3><ul>";
 		var fg1;
 		var fg2;
 		var fg3;
@@ -173,13 +185,13 @@
 		    } 
 		}                      
 		if(fg1=='1'){
-		   txt=txt+"<li><a href='#' onClick=\"showfirstlevel('1')\">"+"环境污染现状"+"</a></li>";
+		   txt=txt+"<li><a href='#' onClick=\"showfirstlevel('1','"+areanum+"')\">"+"环境污染现状"+"</a></li>";
 		}
 		if(fg2=='1'){
-			txt=txt+"<li><a href='#' onClick=\"showfirstlevel('2')\">"+"主要问题描述"+"</a></li>";
+			txt=txt+"<li><a href='#' onClick=\"showfirstlevel('2','"+areanum+"')\">"+"主要问题描述"+"</a></li>";
 		}
 		if(fg3=='1'){
-			txt=txt+"<li><a href='#' onClick=\"showfirstlevel('3')\">"+"治理技术介绍"+"</a></li>";
+			txt=txt+"<li><a href='#' onClick=\"showfirstlevel('3','"+areanum+"')\">"+"治理技术介绍"+"</a></li>";
 		}
 		txt=txt+"</u>";
 		$("#showmessage").html(txt);
@@ -187,22 +199,26 @@
 		//showDetail('a')
 	}
 
-	//
-	function showfirstlevel(level){
+	/**
+	 * 显示区域问题的顶级菜单,总体的问题分类
+	 * @param level 问题类型 1. 环境污染现状  2. 主要问题描述  3. 治理技术介绍
+	 * @param areanum 区域编号
+	 * */
+	function showfirstlevel(level,areanum){
 		//水气声渣
 		if(level=='1'){
 				 var txt="<h3 class=\"widget-title\">环境污染现状</h3><ul>";
-				 txt=txt+"<li><a href='#' onClick=\"showsecondlevel('water','northeast')\">水环境</a></li>";    
-				 txt=txt+"<li><a href='#' onClick=\"showsecondlevel('air')\">大气环境</a></li>";
-				 txt=txt+"<li><a href='#' onClick=\"showsecondlevel('soil')\">固体废弃物与土壤</a></li>";
-				 txt=txt+"<li><a href='#' onClick=\"showsecondlevel('noise')\">噪声</a></li>";
+				 txt=txt+"<li><a href='#' onClick=\"showsecondlevel('water','"+areanum+"')\">水环境</a></li>";    
+				 txt=txt+"<li><a href='#' onClick=\"showsecondlevel('air','"+areanum+"')\">大气环境</a></li>";
+				 txt=txt+"<li><a href='#' onClick=\"showsecondlevel('soil','"+areanum+"')\">固体废弃物与土壤</a></li>";
+				 txt=txt+"<li><a href='#' onClick=\"showsecondlevel('noise','"+areanum+"')\">噪声</a></li>";
 				 txt=txt+"</u>";
 				 $("#showmessage").html(txt);
 				 showDetail('a');
 		}else if(level=='2'){
 				 var txt="<h3 class=\"widget-title\">主要问题描述</h3><ul>";
 				   for(var i=0;i<datastore.length;i++){
-					   if(datastore[i].infotype=='2'){
+					   if(datastore[i].infotype=='2'&&datastore[i].areaid==areanum){
 						   txt=txt+"<li><a href='#' onClick=\"showproblem('"+datastore[i].number+"')\">"+datastore[i].title+"</a></li>";
 					   }	
 				   }
@@ -212,7 +228,7 @@
 		}else if(level=='3'){
 				 var txt="<h3 class=\"widget-title\">治理技术介绍</h3><ul>";
 				   for(var i=0;i<datastore.length;i++){
-					   if(datastore[i].infotype=='3'){
+					   if(datastore[i].infotype=='3'&&datastore[i].areaid==areanum){
 						   txt=txt+"<li><a href='#' onClick=\"showproblem('"+datastore[i].number+"')\">"+datastore[i].title+"</a></li>";
 					   }	
 				   }
@@ -233,19 +249,16 @@
 	}
 
 	function showsecondlevel(type,area){
-				var map = {'northeast':{'hei':'黑龙江','ji':'吉林','liao':'辽宁'}};
 				var name='';
 				if(type=='water'){name='水环境';}
 				if(type=='air'){name='大气环境';}
 				if(type=='soil'){name='固体废弃物与土壤';}
 				if(type=='noise'){name='噪声';}
 	            var txt="<h3 class=\"widget-title\">"+name+"</h3><ul>";
+	            var map = {'00':{'hei':'黑龙江省','ji':'吉林省','liao':'辽宁省'},'01':{'jiangsu':'江苏省','zhejiang':'浙江省','anhui':'安徽省','fujian':'福建省','shandong':'山东省','shanghai':'上海市'},'02':{'guangdong':'广东省','guangxi':'广西省','hainan':'海南省'},'03':{'hubei':'湖北省','hunan':'湖南省','henan':'河南省'},'04':{'beijing':'北京市','tianjin':'天津市','hebei':'河北省','shanxi':'山西省','neimenggu':'内蒙古自治区'},'05':{'ningxia':'宁夏省','xinjiang':'新疆省','qinghai':'青海省','shanxi2':'陕西省','gansu':'甘肃省'},'06':{'sichuan':'四川省','yunnan':'云南省','xizang':'西藏自治区','chongqing':'重庆市'}};
 	            for(var p in map[area]){
 	            	txt=txt+"<li><a href='#' onClick=\"showplace('"+type+"','"+p+"')\">"+map[area][p]+"</a></li>";   
-	            }
-//				txt=txt+"<li><a href='#' onClick=\"showplace('"+type+"','hei')\">黑龙江</a></li>";   
-//				txt=txt+"<li><a href='#' onClick=\"showplace('"+type+"','ji')\">吉林</a></li>";   
-//				txt=txt+"<li><a href='#' onClick=\"showplace('"+type+"','liao')\">辽宁</a></li>";   
+	            }  
 				txt=txt+"</u>";
 				$("#showmessage").html(txt);
 				showDetail('a');
@@ -259,7 +272,7 @@
 			success : function(data) {
 				datastore = data.data;
 				//alert(datastore);
-				initShow();
+				initShow('东北地区','00');
 			}
 		});
 	}

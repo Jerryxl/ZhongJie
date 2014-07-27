@@ -32,7 +32,16 @@ public class GeneralTechService {
 		}
 		return true;
 	}
-	
+	public boolean updateGeneralVO(GeneralVO vo){
+		if(vo==null)return false;
+		String sql=" update generaltech set techname=?,zhtype=?,techtype=?,advancedesc=?,appdesc=?,detailmessage=?,shortmessage=?,usescope=? where id= ? ";
+		try {
+			DbHelper.update(sql,vo.getTechname(),vo.getZhtype(),vo.getTechtype(),vo.getAdvancedesc(),vo.getAppdesc(),vo.getDetailmessage(),vo.getShortmessage(),vo.getUsescope(),vo.getId());
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return true;
+	}
 	@SuppressWarnings("unchecked")
 	public List<GeneralVO> getVOs(){
 		List<GeneralVO> list=new ArrayList<GeneralVO>();
@@ -98,8 +107,21 @@ public class GeneralTechService {
 		}
 		return result;
 	}
+	
+	public GeneralVO getById(String tid){
+		GeneralVO vo=new GeneralVO();
+		String sql="select * from generaltech where id= ? ";
+		try {
+			GeneralVO list=(GeneralVO) DbHelper.querySingleBean(new GeneralVO(), sql,tid);
+			if(list!=null)
+				return list;
+			return null;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	public boolean delete(String techname){
-		System.out.println("deleteService");
 		String sql="delete from generaltech where techname = ?";
 		boolean result = false;
 		try {
@@ -109,6 +131,21 @@ public class GeneralTechService {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	/**
+	 * delete by id
+	 * */
+	public boolean deletebyId(String tid){
+		String sql="delete from generaltech where id=?";
+		boolean result=true;
+		try {
+			result=DbHelper.update(sql, tid)>0?true:false;
+			return result;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return false;
+		}
+		
 	}
 	/**
 	 * @param args

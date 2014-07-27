@@ -5,43 +5,43 @@
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
 <%@page import="org.apache.commons.fileupload.FileItemFactory"%>
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
-<%@ page language="java" contentType="text/html; charset=GB18030" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=GB18030" pageEncoding="GB18030"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=GB18030">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
-<title>JSPä¸Šä¼ æ–‡ä»¶</title>
+<title>JSPÉÏ´«ÎÄ¼ş</title>
 </head>
 <body>
 <%
 String path = request.getContextPath() + "/";
 if(ServletFileUpload.isMultipartContent(request)){
 	String type = "";
-	if(request.getParameter("type") != null)//è·å–æ–‡ä»¶åˆ†ç±»
+	if(request.getParameter("type") != null)//»ñÈ¡ÎÄ¼ş·ÖÀà
 		type = request.getParameter("type").toLowerCase() + "/";
-	String callback = request.getParameter("CKEditorFuncNum");//è·å–å›è°ƒJSçš„å‡½æ•°Num
+	String callback = request.getParameter("CKEditorFuncNum");//»ñÈ¡»Øµ÷JSµÄº¯ÊıNum
 	FileItemFactory factory = new DiskFileItemFactory();
 	ServletFileUpload servletFileUpload = new ServletFileUpload(factory);
-	servletFileUpload.setHeaderEncoding("UTF-8");//è§£å†³æ–‡ä»¶åä¹±ç çš„é—®é¢˜
+	servletFileUpload.setHeaderEncoding("UTF-8");//½â¾öÎÄ¼şÃûÂÒÂëµÄÎÊÌâ
 	List<FileItem> fileItemsList = servletFileUpload.parseRequest(request);
 	for (FileItem item : fileItemsList) {
 		if (!item.isFormField()) {
 			String fileName = item.getName();
 			fileName = "file" + System.currentTimeMillis() + fileName.substring(fileName.lastIndexOf("."));
-			//å®šä¹‰æ–‡ä»¶è·¯å¾„ï¼Œæ ¹æ®ä½ çš„æ–‡ä»¶å¤¹ç»“æ„ï¼Œå¯èƒ½éœ€è¦åšä¿®æ”¹
+			//¶¨ÒåÎÄ¼şÂ·¾¶£¬¸ù¾İÄãµÄÎÄ¼ş¼Ğ½á¹¹£¬¿ÉÄÜĞèÒª×öĞŞ¸Ä
 			String clientPath = "ckeditor/uploader/upload/" + type + fileName;
 
-			//ä¿å­˜æ–‡ä»¶åˆ°æœåŠ¡å™¨ä¸Š
+			//±£´æÎÄ¼şµ½·şÎñÆ÷ÉÏ
 			File file = new File(request.getSession().getServletContext().getRealPath(clientPath));
 			if (!file.getParentFile().exists()) {
 				file.getParentFile().mkdirs();
 			}
 			item.write(file);
 
-			//æ‰“å°ä¸€æ®µJSï¼Œè°ƒç”¨parenté¡µé¢çš„CKEditorçš„å‡½æ•°ï¼Œä¼ é€’å‡½æ•°ç¼–å·å’Œä¸Šä¼ åæ–‡ä»¶çš„è·¯å¾„ï¼›è¿™å¥å¾ˆé‡è¦ï¼Œæˆè´¥åœ¨æ­¤ä¸€å¥
+			//´òÓ¡Ò»¶ÎJS£¬µ÷ÓÃparentÒ³ÃæµÄCKEditorµÄº¯Êı£¬´«µİº¯Êı±àºÅºÍÉÏ´«ºóÎÄ¼şµÄÂ·¾¶£»Õâ¾äºÜÖØÒª£¬³É°ÜÔÚ´ËÒ»¾ä
 			out.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("+callback+",'"+path+clientPath+"')</script>");
 			break;
 		}

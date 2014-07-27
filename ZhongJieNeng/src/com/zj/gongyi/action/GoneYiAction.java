@@ -15,6 +15,8 @@ import com.zj.service.GeneralTechService;
 import com.zj.vo.GeneralVO;
 
 public class GoneYiAction extends ActionSupport {
+	
+	private String tid;
 
 	private static final long serialVersionUID = 6374835508204898215L;
 	// 示范工程的图片
@@ -63,6 +65,14 @@ public class GoneYiAction extends ActionSupport {
 	
 	
 	
+	public String getTid() {
+		return tid;
+	}
+
+	public void setTid(String tid) {
+		this.tid = tid;
+	}
+
 	private JSONObject jsonobject;
 
 	public JSONObject getJsonobject() {
@@ -109,6 +119,21 @@ public class GoneYiAction extends ActionSupport {
 		return SUCCESS;
 	}
 	
+	public String updateTech(){
+		GeneralTechService service=new GeneralTechService();
+		GeneralVO vo=service.getById(tid);
+		GeneralVO update=construceVO();
+		vo.setAdvancedesc(update.getAdvancedesc());
+		vo.setAppdesc(update.getAppdesc());
+		vo.setDetailmessage(update.getDetailmessage());
+		vo.setShortmessage(update.getShortmessage());
+		vo.setUsescope(update.getUsescope());
+		vo.setTechname(update.getTechname());
+		vo.setTechtype(update.getTechtype());
+		vo.setZhtype(update.getZhtype());
+		service.updateGeneralVO(vo);
+		return SUCCESS;
+	}
 	public String delete() {
 		System.out.println("deleteAction");
 		GeneralTechService service=new GeneralTechService();
