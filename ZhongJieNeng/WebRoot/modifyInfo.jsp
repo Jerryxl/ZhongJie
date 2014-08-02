@@ -114,10 +114,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <a href="#dashboard-menu" class="nav-header" data-toggle="collapse"><i class="icon-dashboard"></i>内容管理<i class="icon-chevron-up"></i></a>
         <ul id="dashboard-menu" class="nav nav-list collapse in">
              <li><a href="modifyInfo.jsp">工艺信息录入</a></li>
-            <li><a hre="list.jsp">工艺列表(修改、删除)</a></li>
-            <li ><a href="quyu.jsp">区域信息录入</a></li>
-            <li ><a href="typeManage.html">类别系管理</a></li>
-        </u>
+             <li><a href="list.jsp">工艺列表(修改、删除)</a></li>
+             <li ><a href="quyu.jsp">区域信息录入</a></li>
+  			<li ><a href="typeMgt.jsp">污染物类别体系管理</a></li>
+            <li ><a href="techtypeMgt.jsp">工艺类别体系管理</a></li>        </u>
     </div>
     
     
@@ -126,24 +126,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="content">
         
         <div class="header">
-        <h1 class="page-title">删除技术工艺</h1>
-        <form  action="<%=basePath%>typenagement/deleteAction"  method="post">
-             	<p>
-                    <label>工艺名称</label>
-                     <input type="text" class="span12" id="techname" name="techname">
-               </p>
-               <p>
+<!--         <h1 class="page-title">删除技术工艺</h1> -->
+<!--         <form  action="<%=basePath%>typenagement/deleteAction"  method="post"> -->
+<!--              	<p> -->
+<!--                     <label>工艺名称</label> -->
+<!--                      <input type="text" class="span12" id="techname" name="techname"> -->
+<!--                </p> -->
+<!--                <p> -->
                		
-               		<input type="submit" value="删除" class="btn btn-primary"/>
-               </p>
-             </form>
+<!--                		<input type="submit" value="删除" class="btn btn-primary"/> -->
+<!--                </p> -->
+<!--              </form> -->
             
             <h1 class="page-title">新增技术工艺</h1>
         </div>
         
-                <ul class="breadcrumb">
-                  <li>新增工艺</li>
-        </ul>
 
         <div class="container-fluid">
             <div class="row-fluid">
