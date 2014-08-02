@@ -36,7 +36,7 @@ public class LoadMenuAction extends ActionSupport{
 		String[] cla=new String[]{"icon-home","icon-cogs","icon-briefcase","icon-user","icon-comments-alt"};
 		result.append("<ul class=\"vertical-nav dark red\"><li class=\"showhide\" style=\"display: none;\"><span class=\"title\">MENU</span><span class=\"icon\"><em></em><em></em><em></em><em></em></span></li>");
 		for(int i=0;i<list.size();i++){
-			result.append(consFirstmenustring(i==0,list.get(i),cla,i%list.size()));
+			result.append(consFirstmenustring(i==0,list.get(i),cla,i%(cla.length-1)));
 		}
 		result.append("</ul>");
 		System.out.println("========="+result.toString());

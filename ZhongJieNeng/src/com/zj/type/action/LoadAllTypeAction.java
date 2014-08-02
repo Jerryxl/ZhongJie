@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang.xwork.StringUtils;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -14,6 +16,10 @@ import com.zj.vo.TypeVO;
 public class LoadAllTypeAction extends ActionSupport {
 	private static final long serialVersionUID = 4928445350202869420L;
 	private JSONObject jsonobject;
+	//类别
+	private String zhtype;
+	private String typeName;
+	private String typeMemo;
 
 	public JSONObject getJsonobject() {
 		return jsonobject;
@@ -23,8 +29,24 @@ public class LoadAllTypeAction extends ActionSupport {
 		this.jsonobject = jsonobject;
 	}
 
-	@Override
-	public String execute() throws Exception {
+	/**
+	 * 新增一个类别
+	 * */
+	public String addType(){
+		if(StringUtils.isBlank(zhtype)) return ERROR;
+		if(StringUtils.isBlank(typeName)) return ERROR;
+	//	if(StringUtils.isBlank(typeMemo)) return ERROR;
+		TypeVO vo=new TypeVO();
+		vo.setFather(zhtype);
+		vo.setName(typeName);
+		vo.setMemo(typeMemo);
+		
+		TypeService service = new TypeService();
+		boolean flag=service.addType(vo);
+		if(flag)return SUCCESS;
+		return ERROR;
+	}
+	public String loadExitTypes() throws Exception {
 		JSONArray array = new JSONArray();
 		jsonobject = new JSONObject();
 		TypeService service = new TypeService();
@@ -75,7 +97,7 @@ public class LoadAllTypeAction extends ActionSupport {
 				String name = "";
 				String number = "";
 				for (; i < (vo.getNumber().length() - 4);) {
-					number = vo.getNumber().substring(i, i + 4);
+					number = vo.getNumber().substring(0, i + 4);
 					i += 4;
 					name = name + num_name.get(number) + "-->";
 				}
@@ -84,5 +106,31 @@ public class LoadAllTypeAction extends ActionSupport {
 		}
 		return result;
 	}
+
+	public String getZhtype() {
+		return zhtype;
+	}
+
+	public void setZhtype(String zhtype) {
+		this.zhtype = zhtype;
+	}
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	public String getTypeMemo() {
+		return typeMemo;
+	}
+
+	public void setTypeMemo(String typeMemo) {
+		this.typeMemo = typeMemo;
+	}
+	
+	
 
 }

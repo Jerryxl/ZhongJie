@@ -280,8 +280,8 @@ public class GoneYiAction extends ActionSupport {
 	private GeneralVO construceVO(){
 		GeneralVO value=new GeneralVO();
 		value.setTechname(techname);
-		value.setZhtype(ztype);
-		value.setTechtype(ttype);
+		value.setZhtype(zhtype);
+		value.setTechtype(techtype);
 		//污染物特征
 		String tezheng="";
 		if(tezhenglist.size()<1){

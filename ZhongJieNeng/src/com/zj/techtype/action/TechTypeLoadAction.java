@@ -3,6 +3,8 @@ package com.zj.techtype.action;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang.xwork.StringUtils;
+
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -14,6 +16,10 @@ import com.zj.vo.TechTypeVO;
  * 工艺技术分类类别加载
  * */
 public class TechTypeLoadAction extends ActionSupport{
+	private String zhtype;//对应的污染物类别
+	private String techtype;//上级类别
+	private String techName;//名称
+	private String techMemo;//备注
 
 	private static final long serialVersionUID = 4498256488006452990L;
 	private JSONObject jsonobject;
@@ -26,7 +32,27 @@ public class TechTypeLoadAction extends ActionSupport{
 		this.jsonobject = jsonobject;
 	}
 	
-
+	/**
+	 * 添加工艺类别
+	 * */
+	public String addtechType(){
+		TechTypeVO vo=new TechTypeVO();
+		if(StringUtils.isBlank(zhtype)||StringUtils.isBlank(techName)||StringUtils.isBlank(techtype))return ERROR;
+		String temp=techtype;
+		if("00".equalsIgnoreCase(techtype)){
+			temp="00";
+		}else{
+			String s[]=techtype.split("_");
+			temp=s[s.length-1];
+		}
+		vo.setCh_type(zhtype);
+		vo.setFather(temp);
+		vo.setMemo(techMemo);
+		vo.setName(techName);
+		TechTypeService service=new TechTypeService();
+		boolean flag=service.addTechType(vo);
+		return flag?SUCCESS:ERROR;
+	}
 	@Override
 	public String execute() throws Exception {
 		
@@ -76,7 +102,7 @@ public class TechTypeLoadAction extends ActionSupport{
 				String name = "";
 				String number = "";
 				for (; i < (vo.getNumber().length() - 4);) {
-					number = vo.getNumber().substring(i, i + 4);
+					number = vo.getNumber().substring(0, i + 4);
 					i += 4;
 					name = name + num_name.get(number) + "-->";
 				}
@@ -85,6 +111,40 @@ public class TechTypeLoadAction extends ActionSupport{
 		}
 		return result;
 	}
+	
+	
+	public String getZhtype() {
+		return zhtype;
+	}
+
+	public void setZhtype(String zhtype) {
+		this.zhtype = zhtype;
+	}
+
+	public String getTechtype() {
+		return techtype;
+	}
+
+	public void setTechtype(String techtype) {
+		this.techtype = techtype;
+	}
+
+	public String getTechName() {
+		return techName;
+	}
+
+	public void setTechName(String techName) {
+		this.techName = techName;
+	}
+
+	public String getTechMemo() {
+		return techMemo;
+	}
+
+	public void setTechMemo(String techMemo) {
+		this.techMemo = techMemo;
+	}
+
 	/**
 	 * @param args
 	 */
