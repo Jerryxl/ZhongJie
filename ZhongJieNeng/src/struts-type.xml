@@ -8,12 +8,17 @@
 	<package name="typenagement" namespace="/typenagement" extends="json-default">
 		<!-- 类别管理 -->
 		<!-- 加载站点，即在新增线路时，加载货仓所在城市列表 -->
-		<action name="typeloadAction" class="com.zj.type.action.LoadAllTypeAction">
+		<action name="typeloadAction" class="com.zj.type.action.LoadAllTypeAction" method="loadExitTypes">
 			<result name="success" type="json">
 				<param name="root">jsonobject</param>
 			</result>
 		</action>
-				<action name="deleteTechAction" class="com.zj.gongyi.action.DeleteTechAction">
+		<action name="addTypeAction" class="com.zj.type.action.LoadAllTypeAction" method="addType">
+			<result name="success">/typeMgt.jsp</result>
+  			<result name="error">/error.html</result>   
+		</action>
+		
+		<action name="deleteTechAction" class="com.zj.gongyi.action.DeleteTechAction">
 			<result name="success" type="json">
 				<param name="root">jsonobject</param>
 			</result>
@@ -24,7 +29,10 @@
 				<param name="root">jsonobject</param>
 			</result>
 		</action>
-		
+		<action name="addtechTypeAction" class="com.zj.techtype.action.TechTypeLoadAction" method="addtechType">
+			<result name="success">/techtypeMgt.jsp</result>
+  			<result name="error">/error.html</result>   
+		</action>
 
 		<action name="uploadPictureAction" class="com.zj.gongyi.action.GoneYiAction" method="uploadFirst">
             <param name="savePath">/upload/uploadimge</param>
