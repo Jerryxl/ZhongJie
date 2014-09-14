@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import net.sf.json.JSONObject;
 
+import org.apache.commons.lang.xwork.StringUtils;
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -131,6 +132,29 @@ public class GoneYiAction extends ActionSupport {
 		vo.setTechname(update.getTechname());
 		vo.setTechtype(update.getTechtype());
 		vo.setZhtype(update.getZhtype());
+		
+		boolean isTc=false;
+		boolean ispath=false;
+		//开始视频修改
+		if(StringUtils.isNotBlank(getTcflashFileName())&&!vo.getTcflash().equals(getTcflashFileName())){
+			isTc=true;
+		}
+		if(StringUtils.isNotBlank(getPathflashFileName())&&!vo.getPathflash().equals(getPathflashFileName())){
+			ispath=true;
+		}
+		if(isTc){
+			boolean flag=Savetcflash();
+			if(flag){
+				vo.setTcflash(tevname);
+			}
+		}
+		if(ispath){
+			boolean flag=Savepathflash();
+			if(flag){
+				vo.setPathflash(pvname);
+			}
+		}
+		
 		service.updateGeneralVO(vo);
 		return SUCCESS;
 	}
