@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.xwork.StringUtils;
+
 import com.zj.service.GeneralTechService;
 import com.zj.service.TechTypeService;
 import com.zj.service.TypeService;
+import com.zj.vo.ImageVO;
 import com.zj.vo.MenuItem;
 import com.zj.vo.ShortGeneralVO;
 import com.zj.vo.TechTypeVO;
@@ -15,6 +19,10 @@ import com.zj.vo.TypeVO;
 /**
  * 通用的工具方法
  * */
+/**
+ * @author xueliang
+ *
+ */
 public class CommonTools {
 
 	/**
@@ -171,6 +179,32 @@ public class CommonTools {
 			}
 		}
 		return result.toArray(new String[0]);
+	}
+	/**
+	 * 获得数据的图片
+	 * @param names
+	 * @param desc
+	 * @return
+	 */
+	public static List<ImageVO> getImageList(String names,String desc){
+		List<ImageVO> result=new ArrayList<ImageVO>();
+		if(StringUtils.isEmpty(names)||StringUtils.isEmpty(desc)){
+			return result;
+		}
+		String[] namelist=names.split("$$");
+		String[] desclist=desc.split("$$");
+		if(ArrayUtils.isEmpty(namelist)||ArrayUtils.isEmpty(desclist)){
+			return result;
+		}
+		for(int i=0;i<namelist.length;i++){
+			if(StringUtils.isNotBlank(namelist[i])&&i<desclist.length&&StringUtils.isNotBlank(desclist[i])){
+				ImageVO image=new ImageVO();
+				image.setImagename(namelist[i]);
+				image.setDescription(desclist[i]);
+				result.add(image);
+			}
+		}
+		return result;
 	}
 	public static void main(String[] args) {
 		String s="asdf";
