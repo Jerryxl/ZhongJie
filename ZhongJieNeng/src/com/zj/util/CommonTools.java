@@ -208,8 +208,7 @@ public class CommonTools {
 	}
 	public static void main(String[] args) {
 		String s="asdf";
-		String ss[]=s.split("##");
-		System.out.println(ss[0]);
+		
 		
 		
 	}
