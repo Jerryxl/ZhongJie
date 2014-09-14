@@ -34,9 +34,9 @@ public class GeneralTechService {
 	}
 	public boolean updateGeneralVO(GeneralVO vo){
 		if(vo==null)return false;
-		String sql=" update generaltech set techname=?,zhtype=?,techtype=?,advancedesc=?,appdesc=?,detailmessage=?,shortmessage=?,usescope=? where id= ? ";
+		String sql=" update generaltech set techname=?,zhtype=?,techtype=?,advancedesc=?,appdesc=?,detailmessage=?,shortmessage=?,usescope=?,tcflash=?,pathflash=? where id= ? ";
 		try {
-			DbHelper.update(sql,vo.getTechname(),vo.getZhtype(),vo.getTechtype(),vo.getAdvancedesc(),vo.getAppdesc(),vo.getDetailmessage(),vo.getShortmessage(),vo.getUsescope(),vo.getId());
+			DbHelper.update(sql,vo.getTechname(),vo.getZhtype(),vo.getTechtype(),vo.getAdvancedesc(),vo.getAppdesc(),vo.getDetailmessage(),vo.getShortmessage(),vo.getUsescope(),vo.getTcflash(),vo.getPathflash(),vo.getId());
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
