@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*,com.zj.service.*,com.zj.vo.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*,com.zj.service.*,com.zj.vo.*,com.zj.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -146,7 +146,7 @@ List<TypeVO> list=type.getTypes();
             <div class="row-fluid">
              
     <!--下面开始工艺原理的上传操作-->
-		      <form  action="<%=basePath%>typenagement/modifyPictureAction"  method="post">
+		      <form  action="<%=basePath%>typenagement/modifyPictureAction"  enctype="multipart/form-data" method="post">
 		      <input type="hidden" id="tid" name="tid" value="<%=vo.getId()%>"/>
        			<p>
 				     <label>污染物类别体系</label>
@@ -185,6 +185,32 @@ List<TypeVO> list=type.getTypes();
 				</p>
                 <p>
                     <label>工艺名称</label>
+                     <input type="text" class="span12" id="techname" name="techname" value="<%=vo.getTechname()%>">
+               </p>
+           
+				
+				  
+						
+				   </div>
+				   <!-- 
+				  <p>
+					 <a href="#" id="goonaddimage"class="btn btn-primary" onClick="addSubDiv()">继续添加</a>
+				  </p>
+				   -->
+
+				  <p>
+					<label>请选择工艺原理视频：</label>
+					<input type="file"  name="tcflash" class="span12" value=<%=vo.getTcflash() %>/>   
+
+			      </p>
+
+				   <p>
+						<label>请选择技术路线视频：</label>
+						<input type="file"  name="pathflash" class="span12" value=<%=vo.getPathflash() %>/>   
+
+				    </p>
+                <p>
+                    <label>工艺名称</label>
                      <input type="text" class="span12" id="techname" name="techname" value=<%=vo.getTechname() %>>
                </p>
 			   <p>
@@ -209,7 +235,6 @@ List<TypeVO> list=type.getTypes();
                      <textarea class="span12" rows="5" id="detailmessage" name="detailmessage"><%=vo.getDetailmessage() %></textarea>
                </p>
                     <input type="submit" value="保存" class="btn btn-primary"><input type="button" value="取消" class="btn btn-primary" onclick="history.go(-1)">
-				    
 			   </form>
             </div>
 <div id="userstable">                    
